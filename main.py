@@ -37,7 +37,9 @@ def main():
     enriched_df = enrich_with_genres(flagged_df, genres)
 
     # Step 5: Save output
-    output_path = f"data/movie_insights_{year}.{args.output_format}"
+    extension = "xlsx" if args.output_format == "excel" else "json"
+    output_path = f"data/processed/movie_insights_{year}.{extension}"
+
     if args.output_format == 'json':
         save_dataframe_json(enriched_df, output_path)
     else:
