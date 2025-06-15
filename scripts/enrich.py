@@ -31,5 +31,5 @@ def enrich_with_genres(df: pd.DataFrame, genre_mapping: Dict[int, str]) -> pd.Da
     """
     print("\n🎭 Enriching movies with genre names...")
 
-    df['genres'] = df['genre_ids'].apply(lambda ids: map_genre_ids_to_names(ids, genre_mapping))
+    df['genre(s)'] = df['genre_ids'].apply(lambda ids: map_genre_ids_to_names(ids, genre_mapping))
     return df
