@@ -36,14 +36,17 @@ def main():
     # Step 4: Enrich with genre names
     enriched_df = enrich_with_genres(flagged_df, genres)
 
-    # Step 5: Save output
+    # Step 5: Prepare final DataFrame (note: we can include 'vote count' to intuitively see why records are being flagged)
+    final_df = enriched_df[['title', 'popularity','vote_count', 'genre(s)', 'flagged_as_unreliable']]
+
+    # Step 6: Save output
     extension = "xlsx" if args.output_format == "excel" else "json"
-    output_path = f"data/processed/movie_insights_{year}.{extension}"
+    output_path = f"data/movie_insights_{year}.{extension}"
 
     if args.output_format == 'json':
-        save_dataframe_json(enriched_df, output_path)
+        save_dataframe_json(final_df, output_path)
     else:
-        save_dataframe_excel(enriched_df, output_path)
+        save_dataframe_excel(final_df, output_path)
 
     print(f"\n✅ Pipeline completed successfully.")
 
